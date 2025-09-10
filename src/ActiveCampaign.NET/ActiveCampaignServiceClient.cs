@@ -430,6 +430,25 @@ namespace ActiveCampaign
             await SendRequestAsync(restRequest);
         }
 
+        public async Task EnableEventTrackingAsync(bool enabled)
+        {
+            RestRequest restRequest = new("eventTracking", Method.Put);
+            restRequest.AddHeader("Accept", "application/json");
+            restRequest.AddHeader("Content-Type", "application/json");
+            restRequest.AddJsonBody(new { eventTracking = new { enabled } }, ContentType.Json);
+
+            await SendRequestAsync(restRequest);
+        }
+
+        public async Task<TrackEventResponse> TrackEventAsync(TrackEventRequest trackEventRequest)
+        {
+            RestRequest restRequest = new("https://trackcmp.net/event", Method.Post);
+            restRequest.AddHeader("Accept", ContentType.Json);
+            restRequest.AddBody(trackEventRequest, ContentType.FormUrlEncoded);
+            var response = await SendRequestAsync<TrackEventResponse>(restRequest);
+            return response.Data!;
+        }
+
         private static void HandleResponse(RestResponse response)
         {
             try

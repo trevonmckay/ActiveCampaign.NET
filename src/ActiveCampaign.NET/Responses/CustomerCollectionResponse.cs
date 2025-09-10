@@ -2,6 +2,6 @@
 {
     public class CustomerCollectionResponse
     {
-        public IEnumerable<Customer> EcomCustomers { get; set; }
+        public IReadOnlyList<Customer> EcomCustomers { get; set; }
     }
 }

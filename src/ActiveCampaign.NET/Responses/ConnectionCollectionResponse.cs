@@ -2,6 +2,6 @@
 {
     public class ConnectionCollectionResponse
     {
-        public IEnumerable<Connection> Connections { get; set; }
+        public IReadOnlyList<Connection> Connections { get; set; }
     }
 }
